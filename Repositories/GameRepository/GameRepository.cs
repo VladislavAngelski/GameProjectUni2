@@ -27,10 +27,11 @@ namespace Repositories.GameRepository
                                                                        .ThenInclude(x => x.Extra)
                                                                        .AsNoTracking()
                                                                        .SingleOrDefault(x => x.Model == model);
-        public void Add(Game game)
+        public int Add(Game game)
         {
             _appDbContext.Games.Add(game);
             _appDbContext.SaveChanges();
+            return game.Id;
 
         }
         public void Update(Game game)

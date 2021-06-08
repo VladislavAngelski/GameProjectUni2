@@ -12,7 +12,7 @@ namespace Repositories.GameRepository
         Game GetGameById(int id);
         Game GetGameByModel(string model);
         IEnumerable<Game> GetAllGames { get; }
-        void Add(Game game);
+        int Add(Game game);
         void Update(Game game);
         void Delete(int game);
     }
