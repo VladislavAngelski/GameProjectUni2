@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Repositories.GameRepository
 {
-    public class GameRepository
+    public class GameRepository : IGameRepository
     {
         private readonly ApplicationDbContext _appDbContext;
         public GameRepository(ApplicationDbContext appDbContext)
@@ -19,6 +19,14 @@ namespace Repositories.GameRepository
         public IEnumerable<Game> GetAllGames => _appDbContext.Games.Include(x => x.OsSystem)
                                                                    .Include(x => x.GamesExtras).ThenInclude(x => x.Extra)
                                                                    .AsNoTracking().ToList();
+        public Game GetGameById(int id) => _appDbContext.Games.Include(x => x.OsSystem)
+                                                              .Include(x => x.GamesExtras).ThenInclude(x => x.Extra)
+                                                              .AsNoTracking().SingleOrDefault(x => x.Id == id);
+        public Game GetGameByModel(string model) => _appDbContext.Games.Include(b => b.OsSystem)
+                                                                       .Include(x => x.GamesExtras)
+                                                                       .ThenInclude(x => x.Extra)
+                                                                       .AsNoTracking()
+                                                                       .SingleOrDefault(x => x.Model == model);
         public void Add(Game game)
         {
             _appDbContext.Games.Add(game);
