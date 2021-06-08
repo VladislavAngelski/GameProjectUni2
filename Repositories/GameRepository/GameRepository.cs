@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,7 @@ namespace Repositories.GameRepository
 {
     public class GameRepository
     {
+        private readonly ApplicationDbContext _appDbContext;
+        public GameRepository(ApplicationDbContext appDbContext)
     }
 }
