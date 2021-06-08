@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace Repositories.OsSystemRepository
 {
     public interface IOsSystemRepository
     {
-
+        OsSystem GetOsSystemById(int id);
+        IEnumerable<OsSystem> GetAllOsSystems { get; }
     }
 }
